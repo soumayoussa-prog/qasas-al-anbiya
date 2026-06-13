@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قصص الأنبياء - Guendouze Ahcene</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f7f4;
+  --white: #ffffff;
+  --green: #1a5f3f;
+  --green-dark: #0d4a2e;
+  --gold: #d4a017;
+  --text: #2c3e50;
+  --muted: #7f8c8d;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding-bottom: 100px;
+}
+
+.topbar {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: white;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.story-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green);
+  text-align: center;
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+.story-icon {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.verse-box {
+  background: linear-gradient(135deg, #f8fbf9, #e8f5e9);
+  border-right: 5px solid var(--gold);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.verse-text {
+  font-family: 'Amiri', serif;
+  font-size: 22px;
+  line-height: 2.2;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.verse-ref {
+  font-size: 15px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.story-text {
+  font-size: 17px;
+  line-height: 2;
+  color: #444;
+  text-align: justify;
+  margin: 20px 0;
+}
+
+.lesson-box {
+  background: #fff8e1;
+  border-right: 5px solid var(--gold);
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+.lesson-title {
+  font-weight: 700;
+  color: #8b5a00;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.btn {
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--green);
+  font-size: 18px;
+}
+
+.watermark {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Amiri', serif;
+  font-size: 12px;
+  color: rgba(26,95,63,0.18);
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<div class="watermark">Guendouze Ahcene</div>
+
+<div class="topbar">
+  <div style="font-weight:700;font-size:18px">📖 قصص الأنبياء</div>
+  <button class="back-btn" onclick="window.location.href='index.html'">رجوع ←</button>
+</div>
+
+<div class="container">
+  <div id="loading" class="loading">جاري تحميل القصة...</div>
+  <div id="storyCard" class="card" style="display:none">
+    <div class="story-icon" id="icon">⛵</div>
+    <div class="story-title" id="title"></div>
+    <div class="verse-box">
+      <div class="verse-text" id="verse"></div>
+      <div class="verse-ref" id="verseRef"></div>
+    </div>
+    <div class="story-text" id="text"></div>
+    <div class="lesson-box">
+      <div class="lesson-title">💡 العبرة من القصة</div>
+      <div id="lesson"></div>
+    </div>
+    <div class="btns">
+      <button class="btn" id="prevBtn" onclick="prevStory()">السابق</button>
+      <button class="btn" onclick="showIndex()">الفهرس</button>
+      <button class="btn" onclick="copyStory()">نسخ</button>
+      <button class="btn" onclick="shareStory()">مشاركة</button>
+      <button class="btn" id="nextBtn" onclick="nextStory()">التالي</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  جميع الحقوق محفوظة © 2026<br>
+  بحث وتطوير: Guendouze Ahcene<br>
+  المصادر الموثوقة: islamstory.com, islamqa.info, binbaz.org.sa, quran.com<br>
+  <small>الدليل: ﴿فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ﴾ النحل:43</small>
+</div>
+
+<script>
+const stories = [
+  {icon:"⛵", title:"نوح عليه السلام", surah:71, ayah:1, text:"أرسل الله نوحاً إلى قومه يدعوهم 950 سنة لعبادة الله وحده. صنع الفلك بأمر ربه ونجى هو ومن آمن معه من الطوفان.", lesson:"الصبر على الدعوة وعدم اليأس من هداية الناس مهما طال الزمن."},
+  {icon:"🔥", title:"إبراهيم عليه السلام", surah:21, ayah:69, text:"حاجج قومه في عبادة الأصنام وكسرها، فألقوه في النار فقال الله: يا نار كوني برداً وسلاماً على إبراهيم.", lesson:"التوكل على الله واليقين بنصره عند الشدائد."},
+  {icon:"🐑", title:"إسماعيل عليه السلام", surah:37, ayah:102, text:"رأى إبراهيم في المنام أنه يذبح ابنه إسماعيل، فاستسلم الابن لأمر الله وقال: يا أبت افعل ما تؤمر ستجدني إن شاء الله من الصابرين.", lesson:"الطاعة المطلقة لله والاستسلام لأمره."},
+  {icon:"👑", title:"سليمان عليه السلام", surah:27, ayah:30, text:"آتاه الله ملكاً عظيماً وسخر له الجن والطير والريح. فهم منطق النمل وجاءه الهدهد بخبر ملكة سبأ.", lesson:"شكر النعمة وتسخير الملك في طاعة الله."},
+  {icon:"🏔️", title:"أصحاب الكهف", surah:18, ayah:9, text:"فتية آمنوا بربهم فزادهم هدى، ففروا بدينهم وناموا في الكهف 309 سنة ثم بعثهم الله آية للناس.", lesson:"الثبات على الحق والتوكل على الله في الغربة."},
+  {icon:"🐋", title:"يونس عليه السلام", surah:37, ayah:142, text:"ترك قومه غاضباً فالتقمه الحوت، فسبح في الظلمات: لا إله إلا أنت سبحانك إني كنت من الظالمين فنجاه الله.", lesson:"التسبيح والاستغفار ينجي من الكرب."},
+  {icon:"⚔️", title:"موسى عليه السلام", surah:20, ayah:25, text:"أرسله الله لفرعون بآيات بينات، فشق الله له البحر ونجاه وقومه وأغرق فرعون وجنوده.", lesson:"نصر الله للمظلومين وهلاك الظالمين."},
+  {icon:"💍", title:"يوسف عليه السلام", surah:12, ayah:4, text:"رأى رؤيا فحسده إخوته وألقوه في البئر، فصبر وعف عن امرأة العزيز فصار عزيز مصر.", lesson:"العفة والصبر مفتاح الفرج والتمكين."},
+  {icon:"🌊", title:"صالح عليه السلام", surah:7, ayah:73, text:"أرسل لثمود وآتاه الله الناقة آية، فعقروها فأخذهم الله بالصيحة.", lesson:"عدم تكذيب آيات الله والاستهانة بوعيده."},
+  {icon:"🏠", title:"هود عليه السلام", surah:11, ayah:50, text:"أرسل لعاد فكذبوه فأرسل الله عليهم ريحاً صرصراً عاتية تدمر كل شيء.", lesson:"العزة لله وحده لا للقوة والبنيان."},
+  {icon:"🕋", title:"لوط عليه السلام", surah:15, ayah:59, text:"أرسل لقوم يعملون الفاحشة، فنجاه الله وأهله إلا امرأته وأهلك القوم.", lesson:"خطورة المجاهرة بالمعاصي وعاقبة الفاحشة."},
+  {icon:"⚖️", title:"شعيب عليه السلام", surah:11, ayah:84, text:"أرسل لمدين يدعوهم لتوحيد الله وعدم بخس المكيال، فكذبوه فأخذتهم الصيحة.", lesson:"العدل في الميزان والصدق في التجارة."},
+  {icon:"🕊️", title:"إسحاق ويعقوب", surah:37, ayah:112, text:"بشر الله إبراهيم بإسحاق ومن وراء إسحاق يعقوب، وبارك الله في ذريتهما.", lesson:"بركة دعاء الصالحين لأبنائهم."},
+  {icon:"🌹", title:"أيوب عليه السلام", surah:38, ayah:41, text:"ابتلاه الله في ماله وولده وجسده 18 سنة فصبر، فكشف الله ضره وآتاه أهله.", lesson:"الصبر على البلاء والرضا بقضاء الله."},
+  {icon:"🖋️", title:"إدريس عليه السلام", surah:19, ayah:56, text:"كان صديقاً نبياً ورفعه الله مكاناً علياً، وكان أول من خط بالقلم.", lesson:"طلب العلم والعبادة ترفع العبد."},
+  {icon:"🐪", title:"إسماعيل صادق الوعد", surah:19, ayah:54, text:"كان صادق الوعد وأمر أهله بالصلاة والزكاة، وكان رسولاً نبياً.", lesson:"الوفاء بالوعد من صفات الأنبياء."},
+  {icon:"🎵", title:"داود عليه السلام", surah:34, ayah:10, text:"آتاه الله الملك والحكمة وألان له الحديد وعلمه صنعة اللبوس.", lesson:"الجمع بين الملك والعبادة والصنعة."},
+  {icon:"📜", title:"ذو الكفل", surah:21, ayah:85, text:"كان صابراً من الأخيار، تكفل بطاعة الله فسمي ذا الكفل.", lesson:"التكفل بطاعة الله يورث الرفعة."},
+  {icon:"🌙", title:"زكريا عليه السلام", surah:19, ayah:2, text:"دعا ربه في الكبر أن يرزقه ذرية، فبشره الله بيحيى.", lesson:"حسن الظن بالله وكثرة الدعاء في الخفاء."},
+  {icon:"🌟", title:"يحيى عليه السلام", surah:19, ayah:12, text:"آتاه الله الحكم صبياً وحناناً من لدنه وزكاة وكان باراً بوالديه.", lesson:"البر بالوالدين وطهارة القلب من الصغر."},
+  {icon:"👩", title:"مريم عليها السلام", surah:3, ayah:42, text:"اصطفاها الله وطهرها على نساء العالمين، وكفلها زكريا.", lesson:"العفة والعبادة ترفع شأن المؤمنة."},
+  {icon:"✨", title:"عيسى عليه السلام", surah:3, ayah:45, text:"كلمة الله وروح منه، يكلم الناس في المهد وكهلاً ويبرئ الأكمه والأبرص.", lesson:"معجزات الأنبياء دليل على صدقهم."},
+  {icon:"🕌", title:"محمد ﷺ", surah:33, ayah:21, text:"خاتم النبيين، أرسله الله رحمة للعالمين، أسوته حسنة لمن كان يرجو الله.", lesson:"الاقتداء بالنبي ﷺ في كل أحوالنا."},
+  {icon:"🌴", title:"آدم عليه السلام", surah:2, ayah:30, text:"أول البشر وخليفة الله في الأرض، علمه الأسماء كلها.", lesson:"شرف الإنسان بالعلم وخطورة المعصية."},
+  {icon:"🐍", title:"الخضر", surah:18, ayah:65, text:"عبد من عباد الله آتاه رحمة وعلماً، صحبه موسى ليتعلم الصبر.", lesson:"فوق كل ذي علم عليم، والصبر على العلم."},
+  {icon:"👑", title:"ذو القرنين", surah:18, ayah:83, text:"ملك صالح مكنه الله في الأرض، بنى السد على يأجوج ومأجوج.", lesson:"تسخير القوة والملك لخدمة المستضعفين."},
+  {icon:"🐘", title:"لقمان الحكيم", surah:31, ayah:13, text:"آتاه الله الحكمة ووصى ابنه بتوحيد الله وبر الوالدين.", lesson:"أعظم وصايا الآباء للأبناء: التوحيد."},
+  {icon:"📖", title:"عزير", surah:9, ayah:30, text:"أماته الله مائة عام ثم بعثه، ليكون آية للناس.", lesson:"قدرة الله على الإحياء بعد الموت."},
+  {icon:"🛡️", title:"طالوت وجالوت", surah:2, ayah:249, text:"اختار الله طالوت ملكاً، وهزم داود جالوت بإذن الله.", lesson:"النصر بكثرة التقوى لا بكثرة العدد."},
+  {icon:"🏛️", title:"قارون", surah:28, ayah:76, text:"آتاه الله الكنوز فبغى وتكبر، فخسف الله به وبداره الأرض.", lesson:"خطر المال إذا لم يشكر صاحبه ربه."},
+  {icon:"🧙", title:"هاروت وماروت", surah:2, ayah:102, text:"ملكان أنزلا ببابل يعلمان الناس السحر ابتلاء.", lesson:"خطورة السحر والتعلم منه."},
+  {icon:"🔨", title:"تبع الحميري", surah:44, ayah:37, text:"ملك صالح آمن بالله وحارب الأوثان في اليمن.", lesson:"الملك الصالح يهدم الباطل وينشر الحق."},
+  {icon:"🕯️", title:"أصحاب الأخدود", surah:85, ayah:4, text:"قوم آمنوا بالله فحفر لهم الكافرون الأخدود وأحرقوهم بالنار.", lesson:"الثبات على الإيمان ولو كان الثمن الحياة."},
+  {icon:"🌾", title:"بلعم بن باعوراء", surah:7, ayah:175, text:"آتاه الله العلم فانسلخ منه واتبع هواه كمثل الكلب.", lesson:"خطر اتباع الهوى بعد العلم."},
+  {icon:"💰", title:"أصحاب الجنة", surah:68, ayah:17, text:"ورثوا جنة فأقسموا ليصرمنها مصبحين، فطاف عليها طائف من ربك فأصبحت كالصريم.", lesson:"النية في الرزق والشكر قبل الحصاد."}
+];
+
+let currentIndex = parseInt(localStorage.getItem('storyIndex')) || 0;
+
+async function loadStory() {
+  const story = stories[currentIndex];
+  document.getElementById('icon').textContent = story.icon;
+  document.getElementById('title').textContent = story.title;
+  document.getElementById('text').textContent = story.text;
+  document.getElementById('lesson').textContent = story.lesson;
+
+  document.getElementById('prevBtn').disabled = currentIndex === 0;
+  document.getElementById('nextBtn').disabled = currentIndex === stories.length - 1;
+
+  try {
+    const res = await fetch(`https://api.quran.com/api/v4/verses/by_key/${story.surah}:${story.ayah}?words=true&language=ar&text_type=uthmani`);
+    const data = await res.json();
+    document.getElementById('verse').textContent = data.verse.text_uthmani;
+    document.getElementById('verseRef').textContent = `سورة ${data.verse.chapter.name_arabic} - آية ${story.ayah}`;
+  } catch(e) {
+    document.getElementById('verse').textContent = "تعذر تحميل الآية";
+    document.getElementById('verseRef').textContent = `سورة ${story.surah} - آية ${story.ayah}`;
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('storyCard').style.display = 'block';
+}
+
+function nextStory() {
+  if(currentIndex < stories.length - 1) {
+    currentIndex++;
+    localStorage.setItem('storyIndex', currentIndex);
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('storyCard').style.display = 'none';
+    loadStory();
+    window.scrollTo(0,0);
+  }
+}
+
+function prevStory() {
+  if(currentIndex > 0) {
+    currentIndex--;
+    localStorage.setItem('storyIndex', currentIndex);
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('storyCard').style.display = 'none';
+    loadStory();
+    window.scrollTo(0,0);
+  }
+}
+
+function showIndex() {
+  let list = "فهرس القص:\n\n";
+  stories.forEach((s,i) => list += `${i+1}. ${s.icon} ${s.title}\n`);
+  alert(list);
+}
+
+function copyStory() {
+  const text = document.getElementById('title').textContent + "\n\n" +
+               document.getElementById('verse').textContent + "\n" +
+               document.getElementById('verseRef').textContent + "\n\n" +
+               document.getElementById('text').textContent + "\n\n" +
+               "العبرة: " + document.getElementById('lesson').textContent;
+  navigator.clipboard.writeText(text);
+  alert('تم نسخ القصة ✅');
+}
+
+function shareStory() {
+  const text = document.getElementById('title').textContent + "\n" + document.getElementById('verseRef').textContent;
+  if(navigator.share) {
+    navigator.share({title: text, text: text});
+  } else {
+    copyStory();
+  }
+}
+
+loadStory();
+</script>
+</body>
+</html>
