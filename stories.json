@@ -1,0 +1,17 @@
+[
+  { "id": 1, "title_ar": "الفتن الأربعة في سورة الكهف", "title_en": "The Four Trials in Surah Al-Kahf", "desc_en": "A deep look into the trials mentioned in Al-Kahf.", "url": "https://islamstory.com/ar/artical/20202" },
+  { "id": 2, "title_ar": "قصة يوسف عليه السلام", "title_en": "The Story of Prophet Yusuf", "desc_en": "The story of patience and divine providence.", "url": "https://islamstory.com/ar/artical/20215" },
+  { "id": 3, "title_ar": "قصة إبراهيم عليه السلام", "title_en": "The Story of Prophet Ibrahim", "desc_en": "The journey of the Khalil of Allah.", "url": "https://islamstory.com/ar/artical/20220" },
+  { "id": 4, "title_ar": "قصة موسى عليه السلام", "title_en": "The Story of Prophet Musa", "desc_en": "The struggle against tyranny and the path to freedom.", "url": "https://islamstory.com/ar/artical/20230" },
+  { "id": 5, "title_ar": "قصة الهجرة النبوية", "title_en": "The Prophet's Hijrah", "desc_en": "The historic migration to Madinah.", "url": "https://islamstory.com/ar/artical/20240" },
+  { "id": 6, "title_ar": "أخلاق النبي صلى الله عليه وسلم", "title_en": "The Morals of the Prophet", "desc_en": "Lessons from the character of Prophet Muhammad.", "url": "https://islamstory.com/ar/artical/20250" },
+  { "id": 7, "title_ar": "قصة آدم عليه السلام", "title_en": "The Story of Prophet Adam", "desc_en": "The creation and the beginning of humanity.", "url": "https://islamstory.com/ar/artical/20260" },
+  { "id": 8, "title_ar": "قصة نوح عليه السلام", "title_en": "The Story of Prophet Nuh", "desc_en": "The message of patience through centuries.", "url": "https://islamstory.com/ar/artical/20270" },
+  { "id": 9, "title_ar": "قصة صالح عليه السلام", "title_en": "The Story of Prophet Saleh", "desc_en": "The story of the Thamud and the she-camel.", "url": "https://islamstory.com/ar/artical/20280" },
+  { "id": 10, "title_ar": "غزوة بدر الكبرى", "title_en": "The Battle of Badr", "desc_en": "The first major victory in Islamic history.", "url": "https://islamstory.com/ar/artical/20290" },
+  { "id": 11, "title_ar": "فتح مكة", "title_en": "The Conquest of Makkah", "desc_en": "The peaceful return of the Prophet to Makkah.", "url": "https://islamstory.com/ar/artical/20300" },
+  { "id": 12, "title_ar": "أبو بكر الصديق", "title_en": "Abu Bakr As-Siddiq", "desc_en": "The first Caliph and the closest companion.", "url": "https://islamstory.com/ar/artical/20310" },
+  { "id": 13, "title_ar": "عمر بن الخطاب", "title_en": "Umar ibn Al-Khattab", "desc_en": "The justice and strength of the second Caliph.", "url": "https://islamstory.com/ar/artical/20320" },
+  { "id": 14, "title_ar": "خديجة بنت خويلد", "title_en": "Khadija bint Khuwaylid", "desc_en": "The first to believe and support the Prophet.", "url": "https://islamstory.com/ar/artical/20330" },
+  { "id": 15, "title_ar": "قصة لقمان الحكيم", "title_en": "The Story of Luqman", "desc_en": "Wisdom and advice to his son.", "url": "https://islamstory.com/ar/artical/20340" }
+]
