@@ -3,59 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مكتبة القصص والسيرة</title>
+<title>قصص الأنبياء</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 <style>
-    :root { --bg: #f3e6cd; --navy: #3a2a1b; --gold: #b89868; }
-    body { margin: 0; padding: 0; font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--navy); }
-    .header { background: var(--navy); padding: 15px; color: #eaddc4; text-align: center; font-weight: 700; border-bottom: 3px solid var(--gold); }
-    .search-container { padding: 15px; }
-    #searchInput { width: 100%; padding: 12px; border: 2px solid var(--gold); border-radius: 8px; background: #fdf5e6; font-family: 'Cairo', sans-serif; box-sizing: border-box; }
-    .card { background: #fdf5e6; margin: 15px; border-radius: 10px; border: 1px solid #c5b395; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .card-item { padding: 15px; border-bottom: 1px solid #dcc8a8; cursor: pointer; }
-    .card-item:hover { background: #efe4d0; }
-    .card-item-title { font-size: 17px; font-weight: 600; }
-    .card-item-desc { font-size: 14px; opacity: 0.8; margin-top: 5px; }
+:root { --bg: #f5f5dc; --navy: #1e3a8a; --gold: #d4af37; }
+body { margin: 0; padding: 0; font-family: 'Cairo', sans-serif; background: var(--bg); color: var(--navy); }
+.header { background: var(--navy); padding: 15px; color: var(--gold); text-align: center; font-weight: 700; border-bottom: 3px solid var(--gold); }
+.search-container { padding: 15px; }
+#searchInput { width: 100%; padding: 12px; border: 2px solid var(--gold); border-radius: 8px; background: #fffef6; font-family: 'Cairo'; box-sizing: border-box; }
+.card { background: #fffef6; margin: 15px; border-radius: 10px; border: 1px solid var(--navy); box-shadow: 0 4px 8px rgba(0,0,0,0.1); cursor: pointer; }
+.card:hover { background: #fefae0; }
+.card-item-title { font-size: 17px; font-weight: 600; padding: 15px 15px 5px; }
+.card-item-desc { font-size: 14px; opacity: 0.8; margin: 0 15px 15px; }
+footer { text-align: center; padding: 20px; color: #fff; background: var(--navy); margin-top: 30px; }
 </style>
 </head>
 <body>
 
-<div class="header">📜 مكتبة القصص والسيرة</div>
+<div class="header">قصص الأنبياء</div>
 
 <div class="search-container">
-  <input type="text" id="searchInput" onkeyup="filterStories()" placeholder="🔍 ابحث عن قصة...">
+  <input type="text" id="searchInput" onkeyup="filterStories()" placeholder="ابحث عن قصة...">
 </div>
 
 <div class="card" id="storiesList">
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20202')"><div class="card-item-title">قصة نوح عليه السلام</div><div class="card-item-desc">سفينة النجاة والدعوة إلى التوحيد</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20210')"><div class="card-item-title">قصة أيوب عليه السلام</div><div class="card-item-desc">مضرب الأمثال في الصبر على البلاء</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20215')"><div class="card-item-title">قصة إسماعيل عليه السلام</div><div class="card-item-desc">الذبيح الصابر وزمزم</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20216')"><div class="card-item-title">قصة إبراهيم عليه السلام</div><div class="card-item-desc">خليل الرحمن ومحطم الأصنام</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20218')"><div class="card-item-title">قصة سليمان عليه السلام</div><div class="card-item-desc">المُلك الذي لم ينبغِ لأحدٍ من بعده</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20220')"><div class="card-item-title">قصة يونس عليه السلام</div><div class="card-item-desc">صاحب الحوت وتسبيحاته</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20222')"><div class="card-item-title">قصة ذو الكفل عليه السلام</div><div class="card-item-desc">الوفي بوعده ومن المصطفين الأخيار</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20225')"><div class="card-item-title">قصة موسى والسامري</div><div class="card-item-desc">فتنة العجل وعودة الحق</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20230')"><div class="card-item-title">قصة أصحاب السبت</div><div class="card-item-desc">اختبار الالتزام والتحايل على الشرع</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20235')"><div class="card-item-title">قصة البقرة الصفراء</div><div class="card-item-desc">لغز بني إسرائيل وحكمتهم</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20240')"><div class="card-item-title">قصة ملكة سبأ</div><div class="card-item-desc">سليمان والهدهد وإسلام بلقيس</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20245')"><div class="card-item-title">قصة أصحاب الكهف</div><div class="card-item-desc">الفتية الذين آووا إلى الكهف</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20250')"><div class="card-item-title">الفتن الأربعة في سورة الكهف</div><div class="card-item-desc">دروس في النجاة من فتن الدنيا</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20255')"><div class="card-item-title">قصة يوسف عليه السلام</div><div class="card-item-desc">الصديق العزيز وأحسن القصص</div></div>
-  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/1')"><div class="card-item-title">محمد ﷺ خاتم المرسلين</div><div class="card-item-desc">السيرة العطرة لأشرف الخلق</div></div>
+  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20202')">
+    <div class="card-item-title">آدم عليه السلام</div>
+    <div class="card-item-desc">بداية الخلق وقصة هبوطه للأرض</div>
+  </div>
+
+  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20210')">
+    <div class="card-item-title">نوح عليه السلام</div>
+    <div class="card-item-desc">قصة السفينة والطوفان العظيم</div>
+  </div>
+
+  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20215')">
+    <div class="card-item-title">إبراهيم عليه السلام</div>
+    <div class="card-item-desc">أبو الأنبياء وقصة بناء الكعبة</div>
+  </div>
+
+  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20216')">
+    <div class="card-item-title">موسى عليه السلام</div>
+    <div class="card-item-desc">قصة فرعون وانشقاق البحر</div>
+  </div>
+
+  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20218')">
+    <div class="card-item-title">عيسى عليه السلام</div>
+    <div class="card-item-desc">المعجزات ورفعه إلى السماء</div>
+  </div>
+
+  <div class="card-item" onclick="openLink('https://islamstory.com/ar/artical/20225')">
+    <div class="card-item-title">محمد خاتم المرسلين</div>
+    <div class="card-item-desc">خاتم الأنبياء وسيد المرسلين ﷺ</div>
+  </div>
 </div>
 
+<footer>
+  <p>الزوار: <span id="visitor-count">جاري التحميل...</span></p>
+</footer>
+
 <script>
-  function filterStories() {
-    let input = document.getElementById('searchInput');
-    let filter = input.value.toUpperCase();
-    let container = document.getElementById('storiesList');
-    let cards = container.getElementsByClassName('card-item');
-    for (let i = 0; i < cards.length; i++) {
-      let title = cards[i].querySelector('.card-item-title').innerText;
-      cards[i].style.display = (title.toUpperCase().indexOf(filter) > -1) ? "" : "none";
-    }
+function filterStories() {
+  let input = document.getElementById('searchInput');
+  let filter = input.value.toUpperCase();
+  let container = document.getElementById('storiesList');
+  let cards = container.getElementsByClassName('card-item');
+  for (let i = 0; i < cards.length; i++) {
+    let title = cards[i].querySelector('.card-item-title').innerText;
+    cards[i].style.display = (title.toUpperCase().indexOf(filter) > -1)? '' : 'none';
   }
-  function openLink(url) { window.open(url, '_blank'); }
+}
+
+function openLink(url) { window.open(url, '_blank'); }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/countapi-js@0.0.3/dist/countapi.min.js"></script>
+<script>
+  countapi.get('qisas-al-anbiya', 'visits').then(result => {
+    document.getElementById('visitor-count').textContent = result.value;
+  }).catch(err => {
+    document.getElementById('visitor-count').textContent = '0';
+  });
 </script>
 
 </body>
